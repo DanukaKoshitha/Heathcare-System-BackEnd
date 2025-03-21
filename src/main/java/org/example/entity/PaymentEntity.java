@@ -4,31 +4,30 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Appointment")
+@Table(name = "payment")
 
-public class AppointmentEntity {
+public class PaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "doctorId",nullable = false)
-    private DoctorEntity doctorId;
+    @Column(nullable = false)
+    private String paymentType;
 
-    @ManyToOne
-    @JoinColumn(name = "userId",nullable = false)
-    private UserEntity userId;
+    @OneToOne
+    @JoinColumn(name = "appointmentId",nullable = false)
+    private AppointmentEntity appointmentId;
 
     @Column(nullable = false)
     private LocalDateTime date;
 
-    @OneToOne
-    @JoinColumn(name = "paymentId",nullable = false,unique = true)
-    private PaymentEntity paymentId;
+    @Column(nullable = false)
+    private Double amount;
 }
