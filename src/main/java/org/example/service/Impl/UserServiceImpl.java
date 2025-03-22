@@ -7,11 +7,14 @@ import org.example.repository.UserRepository;
 import org.example.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
     private final ModelMapper mapper;
 
@@ -22,6 +25,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
+
+//        List<UserEntity> all = userRepository.findAll();
+//
+//        List<User> users = new ArrayList<>();
+//
+//        all.forEach(userEntity -> {
+//            users.add(mapper.map(userEntity,User.class));
+//        });
+//        return users;
+
         return List.of();
     }
 
