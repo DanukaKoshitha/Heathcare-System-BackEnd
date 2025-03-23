@@ -2,6 +2,7 @@ package org.example.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.util.GenderType;
@@ -10,7 +11,7 @@ import org.example.util.UserRole;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class User {
     private Integer id;
 
