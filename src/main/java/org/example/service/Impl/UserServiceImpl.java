@@ -45,11 +45,11 @@ public class UserServiceImpl implements UserService {
     public AuthenticationResponse login(UserLogin userLogin) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userLogin.getFirstName(),
+                        userLogin.getEmail(),
                         userLogin.getPassword()
                 )
         );
-        var user = userRepository.findByFirstName(userLogin.getFirstName())
+        var user = userRepository.findByEmail(userLogin.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()

@@ -35,7 +35,7 @@ public class SpringSecurity {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByFirstName(username)
+        return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 

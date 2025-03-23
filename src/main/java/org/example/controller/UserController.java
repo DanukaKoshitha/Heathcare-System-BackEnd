@@ -17,7 +17,7 @@ import java.util.List;
 public class UserController {
     private final UserService service;
 
-    @PostMapping("/save")
+    @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody User user){
         return ResponseEntity.ok(service.register(user));
     }
@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("I DO THAT BRO");
+        return ResponseEntity.ok("I DID THAT BRO");
     }
 
     @GetMapping("/get-all")
