@@ -2,6 +2,7 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.User;
+import org.example.dto.UserLogin;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -17,6 +18,11 @@ public class UserController {
     @PostMapping("/save")
     public void addUser(@RequestBody User user){
         service.addUser(user);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody UserLogin userLogin){
+        return service.verify(userLogin);
     }
 
     @GetMapping("/get-all")
