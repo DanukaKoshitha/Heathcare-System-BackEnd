@@ -1,9 +1,11 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.JWT.AuthenticationResponse;
 import org.example.dto.User;
 import org.example.dto.UserLogin;
 import org.example.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -16,13 +18,18 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/save")
-    public void addUser(@RequestBody User user){
-        service.addUser(user);
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody User user){
+        return ResponseEntity.ok(service.register(user));
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserLogin userLogin){
-        return service.verify(userLogin);
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody UserLogin userLogin){
+        return ResponseEntity.ok(service.login(userLogin));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok("I DO THAT BRO");
     }
 
     @GetMapping("/get-all")

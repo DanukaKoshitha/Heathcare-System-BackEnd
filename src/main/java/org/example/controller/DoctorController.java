@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Doctor;
 import org.example.service.DoctorService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -13,6 +14,11 @@ import java.util.List;
 
 public class DoctorController {
     final DoctorService service;
+
+    @GetMapping
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok("I DO THAT BRO");
+    }
 
     @PostMapping("/save")
     public void addDoctor(@RequestBody Doctor doctor){
