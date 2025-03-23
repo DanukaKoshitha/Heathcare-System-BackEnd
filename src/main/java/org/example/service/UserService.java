@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.User;
+import org.example.dto.UserLogin;
+
 import java.util.List;
 
 public interface UserService {
@@ -9,4 +11,6 @@ public interface UserService {
     User findById(Integer id);
     void updateUser(User user);
     void deleteUser(Integer id);
+
+    String verify(UserLogin userLogin);
 }
