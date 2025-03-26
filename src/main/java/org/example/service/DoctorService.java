@@ -1,12 +1,16 @@
 package org.example.service;
 
+import org.example.JWT.AuthenticationResponse;
 import org.example.dto.Doctor;
+import org.example.dto.LoginObject;
 import java.util.List;
 
 public interface DoctorService {
-    void addDoctor(Doctor doctor);
+    AuthenticationResponse register(Doctor doctor);
+    AuthenticationResponse login(LoginObject login);
     List<Doctor> getAll();
     Doctor findById(Integer id);
     void updateDoctor(Doctor doctor);
     void deleteDoctor(Integer id);
+
 }

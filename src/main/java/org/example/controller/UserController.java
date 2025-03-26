@@ -3,7 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.JWT.AuthenticationResponse;
 import org.example.dto.User;
-import org.example.dto.UserLogin;
+import org.example.dto.LoginObject;
 import org.example.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +23,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody UserLogin userLogin){
-        return ResponseEntity.ok(service.login(userLogin));
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginObject loginObject){
+        return ResponseEntity.ok(service.login(loginObject));
     }
 
     @GetMapping

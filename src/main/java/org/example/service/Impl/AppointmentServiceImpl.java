@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
 import org.example.service.AppointmentService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
