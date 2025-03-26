@@ -1,12 +1,13 @@
-package org.example.config;
+package org.example.SpringSecurity;
 
 import lombok.RequiredArgsConstructor;
 import org.example.JWT.JwtAuthenticationFilter;
 import org.example.repository.UserRepository;
 import org.example.JWT.JwtService.JWTService;
-import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -23,35 +24,31 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SpringSecurity {
+public class UserConfiguration {
 
     private final UserRepository userRepository;
     private final JWTService jwtService;
 
     @Bean
-    public ModelMapper getMapper() {
-        return new ModelMapper();
-    }
-
-    @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByFirstName(username)
+        return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 
     @Bean
+    @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .securityMatcher("/user/**")
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Use the bean method
+                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -70,6 +67,7 @@ public class SpringSecurity {
     }
 
     @Bean
+    @Primary
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }

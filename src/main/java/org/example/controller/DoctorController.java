@@ -1,7 +1,9 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.JWT.AuthenticationResponse;
 import org.example.dto.Doctor;
+import org.example.dto.LoginObject;
 import org.example.service.DoctorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,17 @@ public class DoctorController {
 
     @GetMapping
     public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("I DO THAT BRO");
+        return ResponseEntity.ok("I DID THAT BRO");
     }
 
-    @PostMapping("/save")
-    public void addDoctor(@RequestBody Doctor doctor){
-        service.addDoctor(doctor);
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> addDoctor(@RequestBody Doctor doctor){
+        return ResponseEntity.ok(service.register(doctor));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> loginDoctor(@RequestBody LoginObject login){
+        return ResponseEntity.ok(service.login(login));
     }
 
     @GetMapping("/get-all")

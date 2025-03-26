@@ -3,7 +3,7 @@ package org.example.service.Impl;
 import lombok.RequiredArgsConstructor;
 import org.example.JWT.AuthenticationResponse;
 import org.example.dto.User;
-import org.example.dto.UserLogin;
+import org.example.dto.LoginObject;
 import org.example.entity.UserEntity;
 import org.example.repository.UserRepository;
 import org.example.JWT.JwtService.JWTService;
@@ -42,14 +42,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public AuthenticationResponse login(UserLogin userLogin) {
+    public AuthenticationResponse login(LoginObject loginObject) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        userLogin.getFirstName(),
-                        userLogin.getPassword()
+                        loginObject.getEmail(),
+                        loginObject.getPassword()
                 )
         );
-        var user = userRepository.findByFirstName(userLogin.getFirstName())
+        var user = userRepository.findByEmail(loginObject.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
