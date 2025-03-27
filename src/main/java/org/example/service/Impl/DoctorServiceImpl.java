@@ -48,9 +48,9 @@ public class DoctorServiceImpl implements DoctorService {
                         login.getPassword()
                 )
         );
-        var user = doctorReporsitory.findByEmail(login.getEmail())
+        var doctor = doctorReporsitory.findByEmail(login.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken(doctor);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
