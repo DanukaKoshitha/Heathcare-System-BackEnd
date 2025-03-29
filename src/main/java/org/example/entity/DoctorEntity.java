@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Doctor")
+@Table(name = "doctors")
 
 public class DoctorEntity implements UserDetails {
     @Id
@@ -31,10 +32,17 @@ public class DoctorEntity implements UserDetails {
     private String address;
 
     @Column(nullable = false)
-    private String subject;
+    private String specialization;
 
-    @Column(nullable = false)
-    private String qualification;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "doctor_id")
+    @NotEmpty(message = "At least one qualification must be specified")
+    private List<QualificationEntity> qualifications;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "doctor_id")
+    @NotEmpty(message = "At least one time slot must be specified")
+    private List<TimeSlotsEntity> timeSlots;
 
     @Column(nullable = false)
     private String image;
@@ -44,6 +52,9 @@ public class DoctorEntity implements UserDetails {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private Integer yearsOfExperience;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
