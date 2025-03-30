@@ -2,11 +2,12 @@ package org.example.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-
+@Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +19,22 @@ public class TimeSlotsEntity {
 
     @Enumerated(EnumType.STRING)
     private DayOfWeek day;
+
+    @Column(name = "start_time")
     private LocalTime startTime;
+
+    @Column(name = "end_time")
     private LocalTime endTime;
-    private boolean available;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private DoctorEntity doctor;
+
+    //  Automatically set doctor when adding time slot
+    public void setDoctor(DoctorEntity doctor) {
+        this.doctor = doctor;
+        if (doctor != null && !doctor.getTimeSlots().contains(this)) {
+            doctor.getTimeSlots().add(this);
+        }
+    }
 }

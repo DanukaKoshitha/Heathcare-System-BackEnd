@@ -42,4 +42,7 @@ public class Doctor {
 
     @NotNull(message = "Experience cannot be empty")
     private Integer yearsOfExperience;
+
+    @NotNull(message = "Appointment price cannot be empty")
+    private Double price;
 }

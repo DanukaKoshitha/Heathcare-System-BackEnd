@@ -34,13 +34,11 @@ public class DoctorEntity implements UserDetails {
     @Column(nullable = false)
     private String specialization;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "doctor_id")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotEmpty(message = "At least one qualification must be specified")
     private List<QualificationEntity> qualifications;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "doctor_id")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotEmpty(message = "At least one time slot must be specified")
     private List<TimeSlotsEntity> timeSlots;
 
@@ -55,6 +53,9 @@ public class DoctorEntity implements UserDetails {
 
     @Column(nullable = false)
     private Integer yearsOfExperience;
+
+    @Column(nullable = false)
+    private Double price;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -89,5 +90,21 @@ public class DoctorEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    //  Ensure all qualifications have a doctor reference
+    public void setQualifications(List<QualificationEntity> qualifications) {
+        this.qualifications = qualifications;
+        for (QualificationEntity qualification : qualifications) {
+            qualification.setDoctor(this);
+        }
+    }
+
+    //  Ensure all time slots have a doctor reference
+    public void setTimeSlots(List<TimeSlotsEntity> timeSlots) {
+        this.timeSlots = timeSlots;
+        for (TimeSlotsEntity timeSlot : timeSlots) {
+            timeSlot.setDoctor(this);
+        }
     }
 }

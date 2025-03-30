@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.util.Approval;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,7 +29,13 @@ public class AppointmentEntity {
     @Column(nullable = false)
     private LocalDateTime date;
 
-    @OneToOne
-    @JoinColumn(name = "paymentId",nullable = false,unique = true)
-    private PaymentEntity paymentId;
+//    @OneToOne
+//    @JoinColumn(name = "paymentId",nullable = false,unique = true)
+//    private PaymentEntity paymentId;
+
+    @Column(nullable = false)
+    private String timeSlot;
+
+    @Column(nullable = false)
+    private Approval status;
 }
