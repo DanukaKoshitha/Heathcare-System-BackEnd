@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.util.Approval;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -22,8 +24,14 @@ public class Appointment {
     @NotNull(message = "Date not be empty")
     private LocalDateTime date;
 
-    @NotNull(message = "Payment not be empty")
-    private Integer paymentId;
+//    @NotNull(message = "Payment not be empty")
+//    private Integer paymentId;
+
+    @NotNull(message = "Time slot not be empty")
+    private String timeSlot;
+
+    @NotNull(message = "Approval not be empty")
+    private Approval status;
 }
 
 
