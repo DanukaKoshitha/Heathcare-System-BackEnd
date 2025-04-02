@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @Component
 @RequiredArgsConstructor
@@ -23,11 +24,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final UserDetailsService userDetailsService;
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        System.out.println("PATH" + request.getServletPath());
+
+        return request.getServletPath().equals("/user/login"); // Skip JWT check for login
+    }
+
+    @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
+
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String email;
@@ -38,8 +47,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         email = jwtService.extractUserName(jwt);
 
+
+
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
+
             if (jwtService.isTokenValid(jwt,userDetails)){
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails,

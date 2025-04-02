@@ -9,6 +9,8 @@ import org.example.util.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -51,12 +53,12 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority("USER"));
     }
 
     @Override
     public String getUsername() {
-        return firstName;
+        return email;
     }
 
     @Override

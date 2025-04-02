@@ -11,6 +11,7 @@ import org.example.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -43,15 +44,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AuthenticationResponse login(LoginObject loginObject) {
+
+        System.out.println("LOGIN ");
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginObject.getEmail(),
                         loginObject.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(loginObject.getEmail())
-                .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+
+
+
+        var user = userRepository.findByEmail(loginObject.getEmail()).orElseThrow();
+
+
+        String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
