@@ -1,5 +1,6 @@
 package org.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,5 +38,7 @@ public class User {
     private String email;
 
     @NotNull(message = "Password not be empty")
+    //@JsonIgnore // Password not send to FrontEnd
     private String password;
+
 }
