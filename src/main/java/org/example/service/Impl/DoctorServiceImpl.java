@@ -18,6 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorReporsitory doctorReporsitory;

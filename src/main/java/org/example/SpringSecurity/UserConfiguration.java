@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import java.util.Arrays;
 
 @Configuration
@@ -31,13 +30,11 @@ public class UserConfiguration {
     private final DoctorReporsitory doctorRepository;
     private final JWTService jwtService;
 
-    // Shared Password Encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // User Details Services
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
@@ -50,7 +47,6 @@ public class UserConfiguration {
                 .orElseThrow(() -> new UsernameNotFoundException("Doctor Not Found"));
     }
 
-    // Authentication Providers
     @Bean
     public DaoAuthenticationProvider userAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -67,7 +63,6 @@ public class UserConfiguration {
         return provider;
     }
 
-    // Unified Authentication Manager
     @Bean
     public AuthenticationManager authenticationManager() {
         return new ProviderManager(
@@ -78,7 +73,6 @@ public class UserConfiguration {
         );
     }
 
-    // Custom JWT Filter that handles both user types
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter(jwtService, email -> {
@@ -91,19 +85,13 @@ public class UserConfiguration {
         });
     }
 
-    // Single Security Filter Chain
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/doctor/login").permitAll()
-
-                        .requestMatchers("/user/**").permitAll()
-
-
-
-
+                        .requestMatchers("/doctor/login","/doctor/register").permitAll()  //skip jwt for doctor login and register
+                        .requestMatchers("/user/login","user/register").permitAll()  // skip jwt for user login and register
                         .requestMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/doctor/**").hasAnyAuthority("DOCTOR", "ADMIN")
                         .anyRequest().authenticated()

@@ -4,9 +4,15 @@ import org.example.dto.Appointment;
 import java.util.List;
 
 public interface AppointmentService {
+
     void addAppointment(Appointment appointment);
+
     List<Appointment> getAll();
+
     Appointment searchAppointment(Integer id);
+
     void updateAppointment(Appointment appointment);
+
     void deleteAppointment(Integer id);
+
 }

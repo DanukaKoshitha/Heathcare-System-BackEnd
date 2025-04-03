@@ -9,9 +9,9 @@ import org.example.util.GenderType;
 import org.example.util.UserRole;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class User {
     private Integer id;
 

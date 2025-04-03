@@ -24,9 +24,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginObject loginObject){
-        System.out.println("LOGINN NAIDNSILJAKND kasjlnd");
-
-
         return ResponseEntity.ok(service.login(loginObject));
     }
 
