@@ -8,9 +8,9 @@ import org.example.util.Approval;
 import java.time.LocalDateTime;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "Appointment")
 
 public class AppointmentEntity {

@@ -9,9 +9,10 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+
 public class TimeSlots {
     private DayOfWeek day;
 

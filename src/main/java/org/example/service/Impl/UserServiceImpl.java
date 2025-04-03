@@ -43,15 +43,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public AuthenticationResponse login(LoginObject loginObject) {
+
+        System.out.println("LOGIN ");
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginObject.getEmail(),
                         loginObject.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(loginObject.getEmail())
-                .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+
+        var user = userRepository.findByEmail(loginObject.getEmail()).orElseThrow();
+
+        String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

@@ -12,9 +12,9 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "doctors")
 
 public class DoctorEntity implements UserDetails {
