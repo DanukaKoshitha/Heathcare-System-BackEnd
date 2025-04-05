@@ -17,11 +17,6 @@ import java.util.List;
 public class DoctorController {
     final DoctorService service;
 
-    @GetMapping
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("I DID THAT BRO");
-    }
-
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> addDoctor(@RequestBody Doctor doctor){
         return ResponseEntity.ok(service.register(doctor));

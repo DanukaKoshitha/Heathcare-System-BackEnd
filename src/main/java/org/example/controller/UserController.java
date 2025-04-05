@@ -27,11 +27,6 @@ public class UserController {
         return ResponseEntity.ok(service.login(loginObject));
     }
 
-    @GetMapping
-    public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("I DID THAT BRO");
-    }
-
     @GetMapping("/get-all")
     public List<User> getAll(){
         return service.getAll();

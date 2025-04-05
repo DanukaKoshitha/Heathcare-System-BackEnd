@@ -101,7 +101,7 @@ public class UserConfiguration {
                     .csrf(csrf -> csrf.disable())
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/user/login", "/user/register").permitAll()
-                            .requestMatchers("/doctor/get-all").authenticated()
+                            .requestMatchers("/doctor/login","/doctor/register").permitAll()
                             .anyRequest().authenticated()
                     )
                     .sessionManagement(session ->

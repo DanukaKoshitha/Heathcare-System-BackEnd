@@ -44,8 +44,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public AuthenticationResponse login(LoginObject loginObject) {
 
-        System.out.println("LOGIN ");
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginObject.getEmail(),
