@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.JWT.AuthenticationResponse;
 import org.example.dto.Appointment;
 import org.example.service.AppointmentService;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,9 @@ public class AppointmentController {
     private final AppointmentService service;
 
     @PostMapping("/save")
-    public ResponseEntity<AuthenticationResponse> addAppointment(@RequestBody Appointment appointment){
-        return ResponseEntity.ok(service.save(appointment));
+    public ResponseEntity<String> addAppointment(@RequestBody Appointment appointment){
+        service.addAppointment(appointment);
+        return ResponseEntity.ok("Appointment saved Successful");
     }
 
     @GetMapping("/get-all")

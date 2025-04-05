@@ -102,6 +102,7 @@ public class UserConfiguration {
                     .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/user/login", "/user/register").permitAll()
                             .requestMatchers("/doctor/login","/doctor/register").permitAll()
+                            .requestMatchers("/appointment/**").permitAll()
                             .anyRequest().authenticated()
                     )
                     .sessionManagement(session ->

@@ -1,10 +1,11 @@
 package org.example.service;
 
-import org.example.JWT.AuthenticationResponse;
 import org.example.dto.Appointment;
 import java.util.List;
 
 public interface AppointmentService {
+
+    void addAppointment(Appointment appointment);
 
     List<Appointment> getAll();
 
@@ -14,5 +15,4 @@ public interface AppointmentService {
 
     void deleteAppointment(Integer id);
 
-    AuthenticationResponse save(Appointment appointment);
 }
