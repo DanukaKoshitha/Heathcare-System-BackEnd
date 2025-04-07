@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(savedUser.getId())
                 .build();
     }
 
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(user.getId())
                 .build();
     }
 
