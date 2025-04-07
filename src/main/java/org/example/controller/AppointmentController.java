@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
 import org.example.service.AppointmentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -15,8 +16,9 @@ public class AppointmentController {
     private final AppointmentService service;
 
     @PostMapping("/save")
-    public void addAppointment(@RequestBody Appointment appointment){
+    public ResponseEntity<String> addAppointment(@RequestBody Appointment appointment){
         service.addAppointment(appointment);
+        return ResponseEntity.ok("Appointment saved Successful");
     }
 
     @GetMapping("/get-all")
@@ -35,7 +37,7 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteAppointmentl(@RequestParam Integer id){
+    public void deleteAppointment(@RequestParam Integer id){
         service.deleteAppointment(id);
     }
 }

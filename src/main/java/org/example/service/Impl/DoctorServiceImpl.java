@@ -38,6 +38,7 @@ public class DoctorServiceImpl implements DoctorService {
 
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(saveDoctor.getId())
                 .build();
     }
 
@@ -49,11 +50,11 @@ public class DoctorServiceImpl implements DoctorService {
                         login.getPassword()
                 )
         );
-        var doctor = doctorReporsitory.findByEmail(login.getEmail())
-                .orElseThrow();
+        var doctor = doctorReporsitory.findByEmail(login.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(doctor);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .userId(doctor.getId())
                 .build();
     }
 

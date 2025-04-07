@@ -14,6 +14,8 @@ import java.util.List;
 
 public class Doctor {
 
+    private Integer id;
+
     @NotNull(message = "Name cannot be empty")
     private String name;
 
