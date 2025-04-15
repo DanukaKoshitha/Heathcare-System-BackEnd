@@ -16,9 +16,13 @@ public class AppointmentController {
     private final AppointmentService service;
 
     @PostMapping("/save")
-    public ResponseEntity<String> addAppointment(@RequestBody Appointment appointment){
+    public ResponseEntity<Boolean> addAppointment(@RequestBody Appointment appointment){
+        try {
         service.addAppointment(appointment);
-        return ResponseEntity.ok("Appointment saved Successful");
+        return ResponseEntity.ok(true);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(false);
+        }
     }
 
     @GetMapping("/get-all")

@@ -27,7 +27,7 @@ public class AppointmentEntity {
     private UserEntity userId;
 
     @Column(nullable = false)
-    private LocalDateTime date;
+    private String date;
 
 //    @OneToOne
 //    @JoinColumn(name = "paymentId",nullable = false,unique = true)
