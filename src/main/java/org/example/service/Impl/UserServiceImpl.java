@@ -76,12 +76,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Integer id) {
-        return null;
+        return mapper.map(userRepository.findById(id) , User.class);
     }
 
     @Override
-    public void updateUser(User user) {
-
+    public User updateUser(User user) {
+        return mapper.map(userRepository.save(mapper.map(user , UserEntity.class)) , User.class);
     }
 
     @Override
