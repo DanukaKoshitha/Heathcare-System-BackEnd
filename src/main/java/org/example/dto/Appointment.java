@@ -21,7 +21,7 @@ public class Appointment {
     private Integer userId;
 
     @NotNull(message = "Date not be empty")
-    private LocalDateTime date;
+    private String date;
 
 //    @NotNull(message = "Payment not be empty")
 //    private Integer paymentId;

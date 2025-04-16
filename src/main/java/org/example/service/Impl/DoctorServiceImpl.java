@@ -72,7 +72,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor findById(Integer id) {
-        return null;
+        return mapper.map(doctorReporsitory.findById(id) , Doctor.class);
     }
 
     @Override

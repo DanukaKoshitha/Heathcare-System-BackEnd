@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public void updateUser(@RequestBody User user){
-        service.updateUser(user);
+    public User updateUser(@RequestBody User user){
+        return service.updateUser(user);
     }
 
     @DeleteMapping("/delete")
