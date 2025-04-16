@@ -41,7 +41,8 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteAppointment(@RequestParam Integer id){
+    public ResponseEntity<Boolean> deleteAppointment(@RequestParam Integer id){
         service.deleteAppointment(id);
+        return ResponseEntity.ok(true);
     }
 }
