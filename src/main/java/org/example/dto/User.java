@@ -38,7 +38,7 @@ public class User {
     private String email;
 
     @NotNull(message = "Password not be empty")
-    @JsonIgnore // Password not send to FrontEnd
+    //@JsonIgnore // Password not send to FrontEnd
     private String password;
 
 }
