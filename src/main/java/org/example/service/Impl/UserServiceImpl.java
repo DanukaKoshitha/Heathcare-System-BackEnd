@@ -81,7 +81,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-
         UserEntity userEntity = userRepository.findById(user.getId()).orElseThrow(() -> new RuntimeException("User not found with "+user.getId()));
 
         userEntity.setFirstName(user.getFirstName());
@@ -93,7 +92,7 @@ public class UserServiceImpl implements UserService {
         userEntity.setEmail(user.getEmail());
 
         UserEntity updateUser = userRepository.save(userEntity);
-        return mapper.map(userRepository.save(mapper.map(user , UserEntity.class)) , User.class);
+        return mapper.map(updateUser , User.class);
     }
 
     @Override
