@@ -26,8 +26,8 @@ public class AppointmentController {
     }
 
     @GetMapping("/get-all")
-    public List<Appointment> getAll(){
-        return service.getAll();
+    public List<Appointment> getAll(@RequestParam Integer userId){
+        return service.getAll(userId);
     }
 
     @GetMapping("/find-by-id")

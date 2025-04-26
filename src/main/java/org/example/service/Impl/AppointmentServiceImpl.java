@@ -23,10 +23,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<Appointment> getAll() {
-        return appointmentRepository.findAll()
+    public List<Appointment> getAll(Integer userId) {
+        return appointmentRepository.findByUser_Id(userId)
                 .stream()
-                .map(appointmentEntity -> mapper.map(appointmentEntity , Appointment.class))
+                .map(entity -> mapper.map(entity, Appointment.class))
                 .toList();
     }
 

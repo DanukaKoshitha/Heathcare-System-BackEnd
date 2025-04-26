@@ -7,7 +7,7 @@ public interface AppointmentService {
 
     void addAppointment(Appointment appointment);
 
-    List<Appointment> getAll();
+    List<Appointment> getAll(Integer userId);
 
     Appointment searchAppointment(Integer id);
 

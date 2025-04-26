@@ -41,7 +41,7 @@ public class Doctor {
     private String email;
 
     @NotNull(message = "Password cannot be empty")
-    @JsonIgnore // Password not send to FrontEnd
+    //@JsonIgnore // Password not send to FrontEnd
     private String password;
 
     @NotNull(message = "Experience cannot be empty")
