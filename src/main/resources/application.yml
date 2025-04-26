@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/newHeathCare?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/Healthcare_System?createDatabaseIfNotExist=true
     username: root
     password: 1234
 

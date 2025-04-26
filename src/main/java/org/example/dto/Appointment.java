@@ -23,9 +23,6 @@ public class Appointment {
     @NotNull(message = "Date not be empty")
     private String date;
 
-//    @NotNull(message = "Payment not be empty")
-//    private Integer paymentId;
-
     @NotNull(message = "Time slot not be empty")
     private String timeSlot;
 

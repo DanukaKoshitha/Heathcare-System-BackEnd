@@ -24,14 +24,10 @@ public class AppointmentEntity {
 
     @ManyToOne
     @JoinColumn(name = "userId",nullable = false)
-    private UserEntity userId;
+    private UserEntity user;
 
     @Column(nullable = false)
     private String date;
-
-//    @OneToOne
-//    @JoinColumn(name = "paymentId",nullable = false,unique = true)
-//    private PaymentEntity paymentId;
 
     @Column(nullable = false)
     private String timeSlot;

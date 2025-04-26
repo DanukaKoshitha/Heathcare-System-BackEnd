@@ -43,7 +43,8 @@ public class DoctorController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteDoctor(@RequestParam Integer id){
+    public ResponseEntity<String> deleteDoctor(@RequestParam Integer id){
         service.deleteDoctor(id);
+        return ResponseEntity.ok("true");
     }
 }

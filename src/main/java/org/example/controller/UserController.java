@@ -43,7 +43,8 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteUser(@RequestParam Integer id){
+    public ResponseEntity<String> deleteUser(@RequestParam Integer id){
         service.deleteUser(id);
+        return ResponseEntity.ok("true");
     }
 }
