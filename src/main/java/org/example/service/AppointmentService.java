@@ -15,4 +15,7 @@ public interface AppointmentService {
 
     void deleteAppointment(Integer id);
 
+    void updateAppointmentStatus(Integer appointmentId, String status);
+
+    List<Appointment> getAllAppoitmentsForAdmin();
 }
