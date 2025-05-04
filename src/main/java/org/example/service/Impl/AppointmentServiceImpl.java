@@ -2,12 +2,16 @@ package org.example.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
+import org.example.dto.User;
 import org.example.entity.AppointmentEntity;
 import org.example.repository.AppointmentRepository;
 import org.example.service.AppointmentService;
+import org.example.util.Approval;
+import org.example.util.UserRole;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +20,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     final AppointmentRepository appointmentRepository;
     final ModelMapper mapper;
+    //final UserServiceImpl userService;
 
     @Override
     public void addAppointment(Appointment appointment) {
@@ -43,5 +48,19 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public void deleteAppointment(Integer id) {
         appointmentRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateAppointmentStatus(Integer appointmentId, Approval status) {
+        Appointment appointment = mapper.map(appointmentRepository.findById(appointmentId) , Appointment.class);
+        appointment.setStatus(status);
+        appointmentRepository.save(mapper.map(appointment, AppointmentEntity.class));
+    }
+
+    @Override
+    public List<Appointment> getAllAppoitmentsForAdmin() {
+        return appointmentRepository.findAll()
+                .stream().map(appointmentEntity -> mapper.map(appointmentEntity, Appointment.class))
+                .toList();
     }
 }

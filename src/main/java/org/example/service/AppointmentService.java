@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.Appointment;
+import org.example.util.Approval;
+
 import java.util.List;
 
 public interface AppointmentService {
@@ -15,4 +17,7 @@ public interface AppointmentService {
 
     void deleteAppointment(Integer id);
 
+    void updateAppointmentStatus(Integer appointmentId, Approval status);
+
+    List<Appointment> getAllAppoitmentsForAdmin();
 }

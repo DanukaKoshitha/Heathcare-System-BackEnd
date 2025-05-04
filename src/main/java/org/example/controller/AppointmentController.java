@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
 import org.example.service.AppointmentService;
+import org.example.util.Approval;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -30,6 +31,11 @@ public class AppointmentController {
         return service.getAll(userId);
     }
 
+    @GetMapping("/get-all-forAdmin")
+    public List<Appointment> getAll_Appointments(){
+        return service.getAllAppoitmentsForAdmin();
+    }
+
     @GetMapping("/find-by-id")
     public Appointment searchAppointment(@RequestParam Integer id){
         return service.searchAppointment(id);
@@ -38,6 +44,12 @@ public class AppointmentController {
     @PutMapping("/update")
     public void updateAppointment(@RequestBody Appointment appointment){
         service.updateAppointment(appointment);
+    }
+
+    @PutMapping("/update-appointment-status")
+    public ResponseEntity<String> updateAppointmentStatus(@RequestParam Integer appointmentId, @RequestParam Approval status) {
+        service.updateAppointmentStatus(appointmentId, status);
+        return ResponseEntity.ok("true");
     }
 
     @DeleteMapping("/delete")
