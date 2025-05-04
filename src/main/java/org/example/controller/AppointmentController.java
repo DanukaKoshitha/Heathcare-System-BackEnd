@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
 import org.example.service.AppointmentService;
+import org.example.util.Approval;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -46,7 +47,7 @@ public class AppointmentController {
     }
 
     @PutMapping("/update-appointment-status")
-    public ResponseEntity<String> updateAppointmentStatus(@RequestParam Integer appointmentId, @RequestParam String status) {
+    public ResponseEntity<String> updateAppointmentStatus(@RequestParam Integer appointmentId, @RequestParam Approval status) {
         service.updateAppointmentStatus(appointmentId, status);
         return ResponseEntity.ok("true");
     }
