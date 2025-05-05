@@ -8,7 +8,6 @@ import org.example.entity.UserEntity;
 import org.example.repository.UserRepository;
 import org.example.JWT.JwtService.JWTService;
 import org.example.service.UserService;
-import org.example.util.UserRole;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
