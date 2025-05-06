@@ -2,16 +2,13 @@ package org.example.service.Impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.dto.Appointment;
-import org.example.dto.User;
 import org.example.entity.AppointmentEntity;
 import org.example.repository.AppointmentRepository;
 import org.example.service.AppointmentService;
 import org.example.util.Approval;
-import org.example.util.UserRole;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +17,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     final AppointmentRepository appointmentRepository;
     final ModelMapper mapper;
-    //final UserServiceImpl userService;
 
     @Override
     public void addAppointment(Appointment appointment) {
