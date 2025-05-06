@@ -1,10 +1,10 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dto.Payment;
 import org.example.service.PaymentService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -15,5 +15,12 @@ public class PaymentController {
 
     private final PaymentService service;
 
-
+    @PostMapping("/create")
+    public ResponseEntity<Boolean> createPayment(@RequestBody Payment payment){
+        if (service.savePayment(payment)){
+            return ResponseEntity.ok(true);
+        }else {
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
 }
