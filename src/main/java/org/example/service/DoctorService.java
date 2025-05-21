@@ -15,7 +15,7 @@ public interface DoctorService {
 
     Doctor findById(Integer id);
 
-    void updateDoctor(Doctor doctor);
+    Doctor updateDoctor(Doctor doctor);
 
     void deleteDoctor(Integer id);
 }

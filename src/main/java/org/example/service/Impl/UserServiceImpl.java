@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .userId(user.getId())
+                .userRole(String.valueOf(user.getRole()))
                 .build();
     }
 
