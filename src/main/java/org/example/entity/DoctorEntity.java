@@ -57,6 +57,9 @@ public class DoctorEntity implements UserDetails {
     @Column(nullable = false)
     private Double price;
 
+    @OneToMany(mappedBy = "doctorId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AppointmentEntity> appointments;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("DOCTOR"));

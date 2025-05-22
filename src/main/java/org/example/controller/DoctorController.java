@@ -38,8 +38,8 @@ public class DoctorController {
     }
 
     @PutMapping("/update")
-    public void updateDoctor(@RequestBody Doctor doctor){
-        service.updateDoctor(doctor);
+    public Doctor updateDoctor(@RequestBody Doctor doctor){
+        return service.updateDoctor(doctor);
     }
 
     @DeleteMapping("/delete")
