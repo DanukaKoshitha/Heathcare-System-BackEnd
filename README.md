@@ -1,48 +1,52 @@
-# 🏥 Healthcare Management System
+# 🏥 Healthcare Management System – Backend (Spring Boot)
 
-A **Full-Stack Healthcare Management System** built with **Spring Boot**, **Angular**, and **MySQL**, designed to streamline clinical operations and securely manage patients, doctors, appointments, and admins.
+This is the **backend service** of the Healthcare Management System, built with **Spring Boot** and **MySQL**. It provides secure RESTful APIs for managing doctors, patients, appointments, payments, and users with role-based access and JWT authentication.
 
 ## 🚀 Tech Stack
 
-- **Frontend:** Angular
-- **Backend:** Spring Boot
+- **Framework:** Spring Boot
 - **Database:** MySQL
-- **Security:** Spring Security with JWT
+- **Security:** Spring Security + JWT
 - **Payment Gateway:** Stripe API
+- **Build Tool:** Maven
 
 ---
 
 ## 🌟 Key Features
 
 - 🔐 **Authentication & Authorization**
-  - JWT-based secure login system
-  - Role-based access control (Admin, Doctor, Patient)
+  - Secure login using **JWT Tokens**
+  - Role-based access for **Admin**, **Doctor**, and **Patient**
+  - Spring Security configuration for route protection
 
 - 🧑‍⚕️ **Doctor Management**
-  - Add, update, delete, and list doctors
-  - Role-specific dashboard and functionality
+  - Full CRUD operations (Create, Read, Update, Delete)
+  - Endpoint validations and service-layer logic
 
 - 🧍‍♂️ **Patient Management**
-  - Patient registration and medical data CRUD
-  - Appointment booking and history management
+  - Patient registration and profile management
+  - Medical history and record updates
 
 - 📅 **Appointment Management**
-  - **Create & Delete Appointments**
-  - Patients can book appointments with doctors
-  - Admins can view and manage all appointments
-  - Real-time scheduling and validations
+  - Patients can **create** and **delete** appointments
+  - Admins can **view, assign**, and **manage all** appointments
+  - Conflict checks and scheduling validations
 
-- 👨‍💼 **Admin Panel**
-  - Admin can manage doctors, patients, users, and appointments
+- 👨‍💼 **Admin Control**
+  - Admin can manage users, doctors, patients, and appointments
+  - Global system access with security constraints
 
 - 💳 **Stripe Payment Integration**
-  - Secure and real-time payment processing for appointments
+  - Integrated Stripe API for secure payments
+  - Handles billing for appointments
 
-- 📄 **RESTful APIs**
-  - Clean, modular APIs for frontend-backend communication
+- 📄 **RESTful API Design**
+  - Follows REST best practices with clean controller-service-repository architecture
+  - Easily consumable endpoints for the Angular frontend
 
 - 🔒 **Security**
-  - JWT token-based protection on sensitive routes
-  - Encrypted password storage
+  - Spring Security configuration with JWT filters
+  - Passwords encrypted using BCrypt
+  - CORS handling for frontend requests
 
 ---
